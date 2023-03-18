@@ -19,7 +19,7 @@ namespace ОКФКС._1_3._0_
     /// </summary>
     public partial class Авторизация : Window
     {
-        
+
         public Авторизация()
         {
             InitializeComponent();
@@ -27,35 +27,23 @@ namespace ОКФКС._1_3._0_
         const string adminPassword = "admin123";
         const string operatorPassword = "operator456";
         const string userPassword = "1234567890";
-        
+
         private void Window_Activated(object sender, EventArgs e)
         {
             login_TB.Focus();
-            
+
         }
 
         private void LogInBTN_Click(object sender, RoutedEventArgs e)
         {
-            login_TB.Text.ToLower();
-            login_TB.Text.Trim();
-            if(login_TB.Text == "admin" && passwordPB.Password == adminPassword)
+            login_TB.Text = login_TB.Text.ToLower();
+            login_TB.Text = login_TB.Text.Trim();
+
+            if (AdminAccount.IsAdmin(login_TB.Text, passwordPB.Password))
             {
-                IsAuthorized.result = true;
-                MessageBox.Show("Добро пожаловать, админ!");
-              
-                
-                AdminWindow adminWindow = new();
-                adminWindow.Owner = this;
-
-                Hide();
-                this.Owner.Hide();
-
-                adminWindow.ShowDialog();
-
-           
-
+                AdminAccount.AdminWindowOpen();
             }
-            else if(login_TB.Text == "operator" && passwordPB.Password == operatorPassword)
+            else if (login_TB.Text == "operator" && passwordPB.Password == operatorPassword)
             {
                 IsAuthorized.result = true;
                 MessageBox.Show("Добро пожаловать, оператор!");
@@ -69,11 +57,11 @@ namespace ОКФКС._1_3._0_
                 operatorWindow.ShowDialog();
                 Close();
             }
-            else if(login_TB.Text == "user" && passwordPB.Password == userPassword)
+            else if (login_TB.Text == "user" && passwordPB.Password == userPassword)
             {
                 IsAuthorized.result = true;
                 MessageBox.Show("Добро пожаловать, пользователь!");
-                
+
                 Hide();
             }
         }
@@ -99,7 +87,7 @@ namespace ОКФКС._1_3._0_
             MessageBoxResult result;
 
             result = MessageBox.Show("Вы желаете завершить работу с программой?", "Выход из программы", MessageBoxButton.YesNo);
-            
+
             if (result == MessageBoxResult.No)
             {
                 e.Cancel = true;
