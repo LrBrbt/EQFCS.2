@@ -24,13 +24,12 @@ namespace ОКФКС._1_3._0_
         {
             InitializeComponent();
         }
-        const string adminPassword = "admin123";
-        const string operatorPassword = "operator456";
+       
         const string userPassword = "1234567890";
 
         private void Window_Activated(object sender, EventArgs e)
         {
-            login_TB.Focus();
+            
 
         }
 
@@ -41,9 +40,17 @@ namespace ОКФКС._1_3._0_
 
             if (AdminAccount.IsAdmin(login_TB.Text, passwordPB.Password))
             {
-                AdminAccount.AdminWindowOpen();
+                IsAuthorized.result = true;
+                MessageBox.Show("Добро пожаловать, админ!");
+                AdminWindow adminWindow = new();
+                adminWindow.Owner = this;
+
+                this.Owner.Hide();
+                Hide();
+
+                adminWindow.ShowDialog();
             }
-            else if (login_TB.Text == "operator" && passwordPB.Password == operatorPassword)
+            else if (OperatorAccount.IsOperator(login_TB.Text, passwordPB.Password))
             {
                 IsAuthorized.result = true;
                 MessageBox.Show("Добро пожаловать, оператор!");
@@ -57,7 +64,7 @@ namespace ОКФКС._1_3._0_
                 operatorWindow.ShowDialog();
                 Close();
             }
-            else if (login_TB.Text == "user" && passwordPB.Password == userPassword)
+            else if (UserAccount.IsUser(login_TB.Text, passwordPB.Password))
             {
                 IsAuthorized.result = true;
                 MessageBox.Show("Добро пожаловать, пользователь!");
@@ -68,7 +75,7 @@ namespace ОКФКС._1_3._0_
 
         private void login_TB_TextChanged(object sender, TextChangedEventArgs e)
         {
-            login_TB.Foreground = Brushes.Black;
+           
         }
 
         private void ForgotPasswordBTN_Click(object sender, RoutedEventArgs e)
@@ -84,14 +91,13 @@ namespace ОКФКС._1_3._0_
 
         private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)
         {
-            MessageBoxResult result;
+       
+        }
 
-            result = MessageBox.Show("Вы желаете завершить работу с программой?", "Выход из программы", MessageBoxButton.YesNo);
-
-            if (result == MessageBoxResult.No)
-            {
-                e.Cancel = true;
-            }
+        private void login_TB_GotFocus(object sender, RoutedEventArgs e)
+        {
+            login_TB.Text = "";
+            login_TB.Foreground = Brushes.Black;
         }
     }
 }

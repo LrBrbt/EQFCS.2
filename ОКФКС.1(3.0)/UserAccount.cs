@@ -6,13 +6,13 @@ using System.Threading.Tasks;
 
 namespace ОКФКС._1_3._0_
 {
-    public static class OperatorAccount
+    public static class UserAccount
     {
-        public static string operatorPassword = "operator456";
+        public static string userPassword = "1234567890";
 
-        public static bool IsOperator(string login, string password)
+        public static bool IsUser(string login, string password)
         {
-            if (login == "operator" && password == operatorPassword)
+            if (login == "user" && password == userPassword)
             {
                 return true;
             }

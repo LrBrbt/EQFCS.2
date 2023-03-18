@@ -146,7 +146,7 @@
             <RowDefinition Height="82*"/>
             <RowDefinition Height="191*"/>
         </Grid.RowDefinitions>
-        <TextBox x:Name="login_TB" Style="{StaticResource TextBoxStyle}" Text="Логин" Foreground="Gray" TextChanged="login_TB_TextChanged" Margin="38,62,37,69" Grid.Row="0" />
+        <TextBox x:Name="login_TB" Style="{StaticResource TextBoxStyle}" Text="Логин" Foreground="Gray" GotFocus="login_TB_GotFocus" Margin="38,62,37,69" Grid.Row="0" />
         <PasswordBox HorizontalContentAlignment="Center" ToolTip="Пароль" x:Name="passwordPB" Style="{StaticResource PasswordStyle}" Margin="38,107,37,24" Grid.Row="0"/>
         <Button  IsDefault="True" x:Name="LogInBTN" Style="{StaticResource ButtonStyle}" Grid.Row="1" Content="Войти" Margin="38,11,37,41" Click="LogInBTN_Click"/>
         <Button IsCancel="True" x:Name="CancelBTN" Style="{StaticResource ButtonStyle}" Grid.Row="1" Content="Отмена" Margin="38,46,37,6" Click="CancelBTN_Click"/>

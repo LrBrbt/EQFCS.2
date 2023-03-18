@@ -19,12 +19,6 @@ namespace ОКФКС._1_3._0_
             }
             return false;
         }
-        public static void AdminWindowOpen()
-        {
-            IsAuthorized.result = true;
-            MessageBox.Show("Добро пожаловать, админ!");
-            AdminWindow adminWindow = new();
-            adminWindow.ShowDialog();
-        }
+      
     }
 }
